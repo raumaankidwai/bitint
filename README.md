@@ -1,2 +1,2 @@
 # bitint
-Bit array integer storage in node
+Unsigned bit array integer storage in node.
