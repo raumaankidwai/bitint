@@ -34,7 +34,7 @@ const bi = {
 		return n;
 	},
 	
-	complement: (n) => n.map((e) => (1 - e)),
+	complement: (n) => bi.clean(n).map((e) => (1 - e)),
 	
 	eq: (n1, n2) => {
 		for (var i = 0; i < Math.max(n1.length, n2.length); i ++) {
