@@ -195,7 +195,7 @@ const bi = {
 			return a;
 		}
 		
-		if (bi.isEven(b)) {
+		if (bi.isOdd(b)) {
 			return bi.mult(a, bi.mod(bi.lpm(bi.sq(a), bi.rshift(bi.dec(b)), c), c));
 		}
 		
