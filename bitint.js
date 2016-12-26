@@ -97,7 +97,7 @@ const bi = {
 		var n = [n1[0]];
 		var r = [];
 		
-		for (var i = 1; i < n1.length; i ++) {
+		for (var i = 1; i < (n1.length + 1); i ++) {
 			var k = bi.gte(n, n2);
 			
 			r.push(k);
