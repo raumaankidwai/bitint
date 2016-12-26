@@ -34,6 +34,8 @@ const bi = {
 		return n;
 	},
 	
+	complement: (n) => n.map((e) => (1 - e)),
+	
 	eq: (n1, n2) => {
 		for (var i = 0; i < Math.max(n1.length, n2.length); i ++) {
 			if (n1[i] != n2[i]) {
@@ -69,24 +71,7 @@ const bi = {
 	},
 	
 	sub: (n1, n2) => {
-		var a = [bi.clean(n1), bi.clean(n2)].sort((a, b) => bi.gt(a, b) ? -1 : 1);
-		
-		var b1 = a[0].reverse();
-		var b2 = a[1].reverse();
-		
-		var b = [];
-		var take = 0;
-		
-		for (var i = 0; i < b1.length; i ++) {
-			var n = ~~b1[i] - take - ~~b2[i];
-			
-			take = n < 0;
-			n += 2 * take;
-			
-			b.push(n);
-		}
-		
-		return bi.clean(b.reverse());
+		return bi.add(n1, bi.add(bi.complement(n2), [1])).slice(1);
 	},
 	
 	mult: (n1, n2) => n2.reverse().map((n, i) => n ? n1.concat(Array(i).fill(0)) : []).reduce((a, b) => bi.add(a, b)),
