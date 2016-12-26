@@ -60,6 +60,10 @@ const bi = {
 		}
 		
 		return bi.clean(b.reverse());
+	},
+	
+	mult: (n1, n2) => {
+		return n2.reverse().map((n, i) => n ? n1.concat(Array(i).fill(0)) : []);
 	}
 };
 
