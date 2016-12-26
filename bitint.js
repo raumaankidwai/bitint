@@ -54,7 +54,7 @@ const bi = {
 			var n = ~~b1[i] - take - ~~b2[i];
 			
 			if (n < 0) {
-				n += 2;
+				n += 2;console.log(take + " " + b1[i] + " " + b2[i] + " " + n);
 				take = 1;
 			}
 			
