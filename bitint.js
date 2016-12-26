@@ -80,11 +80,11 @@ const bi = {
 		return r;
 	},
 	
-	randlt: (n) => {
+	randlte: (n) => {
 		var b = bi.clean(n);
 		var k;
 		
-		while (bi.gte(k = bi.rand(b.length), b));
+		while (bi.gt(k = bi.rand(b.length), b));
 		
 		return k;
 	},
@@ -179,6 +179,28 @@ const bi = {
 	
 	intdiv: (n1, n2) => bi.divbase(n1, n2)[0],
 	mod: (n1, n2) => bi.divbase(n1, n2)[1],
+	
+	lpm: (n, p, m) => {
+		if (!p.length) {
+			return 1;
+		}
+		
+		var a = bi.clean(n);
+		var b = bi.clean(p);
+		var c = bi.clean(m);
+		
+		a = bi.mod(a, c);
+		
+		if (bi.eq(b, [1])) {
+			return a;
+		}
+		
+		if (bi.isEven(b)) {
+			return bi.mult(a, bi.mod(bi.lpm(bi.sq(a), bi.rshift(bi.dec(b)), c), c));
+		}
+		
+		return bi.mod(bi.lpm(bi.sq(a), bi.rshift(b), c), c);
+	},
 };
 
 module.exports = bi;
