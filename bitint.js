@@ -56,7 +56,7 @@ const bi = {
 			if (n < 0) {
 				n += 2; console.log(take + " " + b1[i] + " " + b2[i] + " " + n);
 				take = 1;
-			}
+			} else console.log(take + " " + b1[i] + " " + b2[i] + " " + n);
 			
 			b.push(n);
 		}
