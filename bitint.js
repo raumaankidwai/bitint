@@ -37,8 +37,11 @@ const bi = {
 	complement: (n) => bi.clean(n).map((e) => (1 - e)),
 	
 	eq: (n1, n2) => {
-		for (var i = 0; i < Math.max(n1.length, n2.length); i ++) {
-			if (n1[i] != n2[i]) {
+		var b1 = bi.clean(n1);
+		var b2 = bi.clean(n2);
+		
+		for (var i = 0; i < Math.max(b1.length, b2.length); i ++) {
+			if (b1[i] != b2[i]) {
 				return false;
 			}
 		}
