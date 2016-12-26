@@ -1,6 +1,6 @@
-function reverse (n) {
-	return JSON.parse(JSON.stringify(n)).reverse();
-}
+const copy = n => JSON.parse(JSON.stringify(n));
+
+const reverse = n => copy(n).reverse();
 
 const bi = {
 	toBitInt: (n) => {
@@ -27,15 +27,17 @@ const bi = {
 	},
 	
 	clean: (n) => {
-		if (Number.isInteger(n)) {
-			n = bi.toBitInt(n);
+		var k = copy(n);
+		
+		if (Number.isInteger(k)) {
+			k = bi.toBitInt(k);
 		}
 		
-		while (n[0] < 1) {
-			n = n.slice(1);
+		while (k[0] < 1) {
+			k = k.slice(1);
 		}
 		
-		return n;
+		return k;
 	},
 	
 	complement: (n) => bi.clean(n).map((e) => (1 - e)),
@@ -55,6 +57,62 @@ const bi = {
 		}
 		
 		return true;
+	},
+	
+	isOdd: (n) => reverse(n)[0],
+	isEven: (n) => !isOdd(n),
+	
+	inc: (n) => bi.add(n, [1]),
+	dec: (n) => bi.sub(n, [1]),
+	
+	lshift: (n) => n.concat([0]),
+	rshift: (n) => n.slice(0, -1),
+	
+	sq: (n) => bi.mult(n, n),
+	
+	rand: (b) => {
+		var r = [];
+		
+		for (var i = 0; i < b; i ++) {
+			r.push(Math.round(Math.random()));
+		}
+		
+		return r;
+	},
+	
+	randlt: (n) => {
+		var b = bi.clean(n);
+		var k;
+		
+		while (bi.gte(k = bi.rand(b.length), b));
+		
+		return k;
+	},
+	
+	isPrime: (n) => {
+		if (bi.lt([1, 0])) {
+			return false;
+		}
+		
+		if (bi.lt([1, 0, 0])) {
+			return true;
+		}
+		
+		if (bi.isEven(n)) {
+			return false;
+		}
+		
+		var s = [0];
+		var d = bi.dec(n);
+		
+		while (bi.isEven(d)) {
+			d = bi.rshift(d);
+			s = bi.inc(s);
+		}
+		
+		for (var i = 0; i < 64; i ++) {
+			
+		}
 	},
 	
 	gt: (n1, n2) => (b1 = bi.clean(n1)).length ? (b2 = bi.clean(n2)).length ? b1.length == b2.length ? bi.gt(b1.slice(1), b2.slice(1)) : b1.length > b2.length : true : false,
@@ -116,11 +174,11 @@ const bi = {
 			n = bi.sub(n, k ? n2 : []).concat([n1[i]]);
 		}
 		
-		return [r, n.slice(0, -1)];
+		return [r, bi.rshift(n)];
 	},
 	
 	intdiv: (n1, n2) => bi.divbase(n1, n2)[0],
-	mod: (n1, n2) => bi.divbase(n1, n2)[1]
+	mod: (n1, n2) => bi.divbase(n1, n2)[1],
 };
 
 module.exports = bi;
