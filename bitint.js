@@ -1,10 +1,19 @@
 const bi = {
 	clean: (n) => {
-		while (n[0] < 1) {
-			n = n.slice(1);
+		var b = false;
+		var r = [];
+		
+		for (var i = 0; i < n.length; i ++) {
+			if (n[i] != 0) {
+				b = true;
+			}
+			
+			if (b) {
+				r.push(n[i]);
+			}
 		}
 		
-		return n;
+		return r;
 	},
 	
 	eq: (n1, n2) => {
@@ -54,7 +63,7 @@ const bi = {
 			var n = ~~b1[i] - take - ~~b2[i];
 			
 			if (n < 0) {
-				n += 2;console.log(take + " " + b1[i] + " " + b2[i] + " " + n);
+				n += 2;
 				take = 1;
 			}
 			
