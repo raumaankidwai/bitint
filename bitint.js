@@ -50,11 +50,11 @@ const bi = {
 		var b = [];
 		var take = 0;
 		
-		for (var i = 0; i < b1.length; i ++) {console.log(b1);
+		for (var i = 0; i < b1.length; i ++) { console.log(b1); console.log(b2);
 			var n = ~~b1[i] - take - ~~b2[i];
 			
 			if (n < 0) {
-				n += 2;
+				n += 2; console.log(take + " " + b1[i] + " " + b2[i] + " " + n);
 				take = 1;
 			}
 			
