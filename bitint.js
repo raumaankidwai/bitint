@@ -12,6 +12,15 @@ const bi = {
 		
 		return b;
 	},
+	fromBitInt: (n) => {
+		var k = 0;
+		
+		for (var i = 0; i < n.length; i ++) {
+			k += n[i] * Math.pow(2, n.length - i - 1);
+		}
+		
+		return k;
+	},
 	
 	clean: (n) => {
 		if (Number.isInteger(n)) {
