@@ -198,7 +198,7 @@ const bi = {
 		var r = [1];
 		
 		while (bi.gt(b, [])) {
-			if (isOdd(b)) {
+			if (bi.isOdd(b)) {
 				r = bi.mod(bi.mult(r, a), c);
 			}
 			
