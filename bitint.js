@@ -1,5 +1,21 @@
 const bi = {
+	toBitInt: (n) => {
+		var k = Math.floor(Math.log2(n));
+		var b = [];
+		
+		for (var i = k; i > -1; i --) {
+			n -= Math.pow(2, k) * (n > k);
+			b.push(n > k);
+		}
+		
+		return b;
+	},
+	
 	clean: (n) => {
+		if (Number.isInteger(n)) {
+			n = bi.toBitInt(n);
+		}
+		
 		while (n[0] < 1) {
 			n = n.slice(1);
 		}
