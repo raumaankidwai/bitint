@@ -64,3 +64,5 @@ const bi = {
 		return bi.clean(b.reverse());
 	}
 };
+
+module.exports = bi;
