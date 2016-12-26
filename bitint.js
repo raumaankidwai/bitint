@@ -94,7 +94,18 @@ const bi = {
 	mult: (n1, n2) => n2.reverse().map((n, i) => n ? n1.concat(Array(i).fill(0)) : []).reduce((a, b) => bi.add(a, b)),
 	
 	div: (n1, n2) => {
+		var n = [n1[0]];
+		var r = [];
 		
+		for (var i = 1; i < n1.length; i ++) {
+			var k = bi.gte(n, n2);
+			
+			r.push(k);
+			
+			n = bi.sub(n, k ? n2 : []).concat([n1[i]]);
+		}
+		
+		return r;
 	},
 };
 
