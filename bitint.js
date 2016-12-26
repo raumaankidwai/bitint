@@ -35,7 +35,7 @@ const bi = {
 			
 			b.push(n % 2);
 			
-			carry = +(n > 1);
+			carry = n > 1;
 		}
 		
 		return bi.clean(b.reverse());
@@ -50,13 +50,11 @@ const bi = {
 		var b = [];
 		var take = 0;
 		
-		for (var i = 0; i < b1.length; i ++) { console.log(b1); console.log(b2);
+		for (var i = 0; i < b1.length; i ++) {
 			var n = ~~b1[i] - take - ~~b2[i];
 			
-			if (n < 0) {
-				n += 2; console.log(take + " " + b1[i] + " " + b2[i] + " " + n);
-				take = 1;
-			} else console.log(take + " " + b1[i] + " " + b2[i] + " " + n);
+			take = n < 0;
+			n += 2 * take;
 			
 			b.push(n);
 		}
