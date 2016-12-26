@@ -116,7 +116,7 @@ const bi = {
 			n = bi.sub(n, k ? n2 : []).concat([n1[i]]);
 		}
 		
-		return [r, n];
+		return [r, n.slice(0, -1)];
 	},
 	
 	intdiv: (n1, n2) => bi.divbase(n1, n2)[0],
