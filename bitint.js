@@ -101,7 +101,7 @@ const bi = {
 			var k = bi.gte(n, n2);
 			
 			r.push(k);
-			
+			console.log(n);
 			n = bi.sub(n, k ? n2 : []).concat([n1[i]]);
 		}
 		
