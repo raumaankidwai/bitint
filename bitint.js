@@ -17,26 +17,11 @@ const bi = {
 		return true;
 	},
 	
-	gt: (n1, n2) => {
-		var b1 = clean(n1);
-		var b2 = clean(n2);
-		
-		if (!b1.length) {
-			return false;
-		}
-		
-		if (!b2.length) {
-			return true;
-		}
-		
-		if (b1.length == b2.length) {
-			return bi.gt(b1.slice(1), b2.slice(1));
-		}
-		
-		return b1.length > b2.length;
-		
-		return b1.length ? b2.length ? b1.length == b2.length ? bi.gt(b1.slice(1), b2.slice(1)) : b1.length > b2.length : true : false;
-	},
+	gt: (n1, n2) => (b1 = bi.clean(n1)).length ? (b2 = bi.clean(n2)).length ? b1.length == b2.length ? bi.gt(b1.slice(1), b2.slice(1)) : b1.length > b2.length : true : false,
+	gte: (n1, n2) => bi.eq(n1, n2) || bi.gt(n1, n2),
+	
+	lt: (n1, n2) => !bi.gte(n1, n2),
+	lte: (n1, n2) => !bi.gt(n1, n2),
 	
 	add: (n1, n2) => {
 		var b1 = n1.reverse();
@@ -57,8 +42,10 @@ const bi = {
 	},
 	
 	sub: (n1, n2) => {
-		var b1 = n1.reverse();
-		var b2 = n2.reverse();
+		var a = [bi.clean(n1), bi.clean(n2)].sort((a, b) => bi.gt(a, b) ? -1 : 1);
+		
+		var b1 = a[0].reverse();
+		var b2 = a[1].reverse();
 		
 		var b = [];
 		var take = 0;
