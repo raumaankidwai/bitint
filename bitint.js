@@ -195,11 +195,18 @@ const bi = {
 			return a;
 		}
 		
-		if (bi.isOdd(b)) {
-			return bi.mult(a, bi.mod(bi.lpm(bi.sq(a), bi.rshift(bi.dec(b)), c), c));
+		var r = [1];
+		
+		while (b > 0) {
+			if (isOdd(b)) {
+				r = bi.mod(bi.mult(r, a), c);
+			}
+			
+			b = bi.rshift(b);
+			a = bi.mod(bi.sq(a), c)
 		}
 		
-		return bi.mod(bi.lpm(bi.sq(a), bi.rshift(b), c), c);
+		return r;
 	},
 };
 
