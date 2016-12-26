@@ -4,8 +4,10 @@ const bi = {
 		var b = [];
 		
 		for (var i = k; i > -1; i --) {
-			n -= Math.pow(2, k) * (n > k);
-			b.push(n > k);
+			var m = Math.pow(2, i);
+			
+			b.push(n >= m);
+			n -= m * (n >= m);
 		}
 		
 		return b;
