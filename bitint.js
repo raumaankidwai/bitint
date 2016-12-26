@@ -60,7 +60,7 @@ const bi = {
 	},
 	
 	isOdd: (n) => reverse(n)[0],
-	isEven: (n) => !isOdd(n),
+	isEven: (n) => !bi.isOdd(n),
 	
 	inc: (n) => bi.add(n, [1]),
 	dec: (n) => bi.sub(n, [1]),
