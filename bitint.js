@@ -1,6 +1,6 @@
 const bi = {
 	clean: (n) => {
-		while (!n[0]) {
+		while (n[0] < 1) {
 			n = n.slice(1);
 		}
 		
