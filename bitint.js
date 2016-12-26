@@ -42,7 +42,7 @@ const bi = {
 	},
 	
 	sub: (n1, n2) => {
-		var a = [bi.clean(n1), bi.clean(n2)].sort((a, b) => bi.gt(a, b) ? -1 : 1);
+		var a = [bi.clean(n1), bi.clean(n2)].sort((a, b) => bi.gt(a, b) ? 1 : -1);
 		
 		var b1 = a[0].reverse();
 		var b2 = a[1].reverse();
