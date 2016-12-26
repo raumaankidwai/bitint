@@ -104,7 +104,7 @@ const bi = {
 	
 	mult: (n1, n2) => reverse(n2).map((n, i) => n ? n1.concat(Array(i).fill(0)) : []).reduce((a, b) => bi.add(a, b)),
 	
-	div: (n1, n2) => {
+	divbase: (n1, n2) => {
 		var n = [n1[0]];
 		var r = [];
 		
@@ -114,11 +114,13 @@ const bi = {
 			r.push(k);
 			
 			n = bi.sub(n, k ? n2 : []).concat([n1[i]]);
-			console.log(n2);
 		}
 		
-		return r;
+		return [r, n];
 	},
+	
+	intdiv: (n1, n2) => bi.divbase(n1, n2)[0],
+	mod: (n1, n2) => bi.divbase(n1, n2)[1]
 };
 
 module.exports = bi;
