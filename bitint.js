@@ -102,7 +102,10 @@ const bi = {
 			
 			r.push(k);
 			console.log(n);
+			console.log(k ? n2 : []);
+			console.log("-----");
 			n = bi.sub(n, k ? n2 : []).concat([n1[i]]);
+			console.log(n);
 		}
 		
 		return r;
