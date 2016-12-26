@@ -40,6 +40,10 @@ const bi = {
 		var b1 = bi.clean(n1);
 		var b2 = bi.clean(n2);
 		
+		if (b1.length != b2.length) {
+			return false;
+		}
+		
 		for (var i = 0; i < Math.max(b1.length, b2.length); i ++) {
 			if (b1[i] != b2[i]) {
 				return false;
