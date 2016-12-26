@@ -4,7 +4,7 @@ const bi = {
 		var b = [];
 		
 		for (var i = k; i > -1; i --) {
-			var m = Math.pow(2, i);
+			var m = 1 << i;
 			
 			b.push(n >= m);
 			n -= m * (n >= m);
@@ -16,7 +16,7 @@ const bi = {
 		var k = 0;
 		
 		for (var i = 0; i < n.length; i ++) {
-			k += n[i] * Math.pow(2, n.length - i - 1);
+			k += n[i] * (1 << (n.length - i - 1));
 		}
 		
 		return k;
@@ -83,7 +83,7 @@ const bi = {
 			var n = ~~b1[i] - take - ~~b2[i];
 			
 			take = n < 0;
-			n += 2 * take;
+			n += take << 1;
 			
 			b.push(n);
 		}
