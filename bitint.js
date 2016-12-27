@@ -37,10 +37,6 @@ const bi = {
 	clean: (n) => {
 		var k = copy(n);
 		
-		if (Number.isInteger(k)) {
-			k = bi.toBitInt(k);
-		}
-		
 		while (k[0] < 1) {
 			k = k.slice(1);
 		}
