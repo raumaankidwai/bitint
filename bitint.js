@@ -1,4 +1,12 @@
-const copy = n => JSON.parse(JSON.stringify(n));
+const copy = n => {
+	var k = [];
+	
+	for (var i = 0; i < n.length; i ++) {
+		k[i] = n[i];
+	}
+	
+	return k;
+};
 
 const reverse = n => copy(n).reverse();
 
