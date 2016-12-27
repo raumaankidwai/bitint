@@ -186,20 +186,20 @@ const bi = {
 		}
 		
 		var a = bi.clean(n);
-		var b = bi.clean(p);
+		var b = reverse(bi.clean(p));
 		var c = bi.clean(m);
 		
-		a = bi.mod(a, c);
+		var k = [];
 		
-		if (bi.eq(b, [1])) {
-			return a;
+		for (var i = 0; i < b.length; i ++) {
+			if (b[i]) {
+				k.push(a);
+			}
+			
+			a = bi.mod(bi.sq(a), c);
 		}
 		
-		if (bi.isOdd(b)) {
-			return bi.mult(a, bi.mod(bi.lpm(bi.sq(a), bi.rshift(bi.dec(b)), c), c));
-		}
-		
-		return bi.mod(bi.lpm(bi.sq(a), bi.rshift(b), c), c);
+		return k.reduce((a, b) => bi.mod(bi.mult(a, b), c));
 	},
 };
 
