@@ -190,20 +190,18 @@ const bi = {
 		}
 		
 		var a = bi.clean(n);
-		var b = reverse(bi.clean(p));
-		var c = bi.clean(m);
 		
 		var k = [];
 		
-		for (var i = 0; i < b.length; i ++) {
-			if (b[i]) {
+		for (var i = 0; i < p.length; i ++) {
+			if (p[i]) {
 				k.push(a);
 			}
 			
-			a = bi.mod(bi.sq(a), c);
+			a = bi.mod(bi.sq(a), m);
 		}
 		
-		return k.reduce((a, b) => bi.mod(bi.mult(a, b), c));
+		return k.reduce((a, b) => bi.mod(bi.mult(a, b), m));
 	},
 };
 
