@@ -185,23 +185,30 @@ const bi = {
 	mod: (n1, n2) => bi.divbase(n1, n2)[1],
 	
 	lpm: (n, p, m) => {
-		if (!p.length) {
-			return 1;
+		var b = bi.clean(p);
+		
+		if (b.length < 2) {
+			return [b.length];
 		}
 		
 		var a = bi.clean(n);
+		var c = bi.clean(m);
 		
-		var k = [];
+		var k = [1];
 		
-		for (var i = 0; i < p.length; i ++) {
-			if (p[i]) {
-				k.push(a);
+		a = bi.mod(a, c);
+		
+		while (bi.gt(b, [0])) {
+			if (b[b.length - 1]) {
+				k = bi.mod(bi.mult(k, a), c);
 			}
 			
-			a = bi.mod(bi.sq(a), m);
+			b = bi.rshift(b);
+			
+			a = bi.mod(bi.sq(a), c);
 		}
 		
-		return k.reduce((a, b) => bi.mod(bi.mult(a, b), m));
+		return k;
 	},
 };
 
