@@ -175,7 +175,7 @@ const bi = {
 		}
 		
 		var m = Math.max(n1.length, n2.length);
-		var m2 = m / 2;
+		var m2 = Math.floor(m / 2);
 		
 		var h1 = n1.slice(0, m2);
 		var l1 = n1.slice(m2);
