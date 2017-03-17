@@ -170,7 +170,7 @@ const bi = {
 		var n1 = bi.clean(a);
 		var n2 = bi.clean(b);
 		
-		if (Math.min(n1.length, n2.length) < 10) {
+		if (Math.min(n1.length, n2.length) < 2) {
 			return bi.mult(n1, n2);
 		}
 		
