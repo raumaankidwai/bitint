@@ -174,20 +174,19 @@ const bi = {
 			return bi.mult(n1, n2);
 		}
 		
-		var m = Math.max(n1.length, n2.length);
-		var m2 = Math.floor(m / 2);
+		var m = Math.floor(Math.max(n1.length, n2.length) / 2);
 		
-		var h1 = n1.slice(0, m2);
-		var l1 = n1.slice(m2);
+		var h1 = n1.slice(0, m);
+		var l1 = n1.slice(m);
 		
-		var h2 = n2.slice(0, m2);
-		var l2 = n2.slice(m2);
+		var h2 = n2.slice(0, m);
+		var l2 = n2.slice(m);
 		
 		var z0 = bi.karatsuba(l1, l2);
 		var z1 = bi.karatsuba(bi.add(l1, h1), bi.add(l2, h2));
 		var z2 = bi.karatsuba(h1, h2);
 		
-		return bi.add(bi.add(z2.concat(Array(m).fill(0)), bi.sub(bi.sub(z1, z2), z0).concat(Array(m2).fill(0))), z0);
+		return bi.add(bi.add(z2.concat(Array(2 * m).fill(0)), bi.sub(bi.sub(z1, z2), z0).concat(Array(m).fill(0))), z0);
 	},
 	
 	divbase: (n1, n2) => {
