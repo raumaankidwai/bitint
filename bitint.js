@@ -164,7 +164,7 @@ const bi = {
 		return bi.clean(reverse(b));
 	},
 	
-	mult: (n1, n2) => reverse(n2).map((n, i) => n ? n1.concat(Array(i).fill(0)) : []).reduce((a, b) => bi.add(a, b)),
+	mult: (n1, n2) => n2.length ? reverse(n2).map((n, i) => n ? n1.concat(Array(i).fill(0)) : []).reduce((a, b) => bi.add(a, b)) : [],
 	
 	karatsuba: (a, b) => {
 		var n1 = bi.clean(a);
