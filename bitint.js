@@ -18,7 +18,7 @@ const bi = {
 		for (var i = k; i > -1; i --) {
 			var m = 1 << i;
 			
-			b.push(n >= m);
+			b.push(+(n >= m));
 			n -= m * (n >= m);
 		}
 		
@@ -199,7 +199,7 @@ const bi = {
 		for (var i = 1; i < (n1.length + 1); i ++) {
 			var k = bi.gte(n, n2);
 			
-			r.push(k);
+			r.push(+k);
 			
 			n = bi.sub(n, k ? n2 : []).concat([n1[i]]);
 		}
