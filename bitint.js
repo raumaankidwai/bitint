@@ -179,9 +179,6 @@ const bi = {
 		var h1 = n1.slice(0, -m);
 		var l1 = n1.slice(-m);
 		
-		console.log(bi.add(h1.concat(Array(m).fill(0)), l1));
-		console.log(n1);
-		
 		var h2 = n2.slice(0, -m);
 		var l2 = n2.slice(-m);
 		
