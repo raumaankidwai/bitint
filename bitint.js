@@ -166,11 +166,9 @@ const bi = {
 	
 	mult: (n1, n2) => n2.length ? reverse(n2).map((n, i) => n ? n1.concat(Array(i).fill(0)) : []).reduce((a, b) => bi.add(a, b)) : [],
 	
-	karatsuba: (n1, n2) => {
-		/*
+	karatsuba: (a, b) => {
 		var n1 = bi.clean(a);
 		var n2 = bi.clean(b);
-		//*/
 		
 		if (Math.min(n1.length, n2.length) < 2) {
 			return bi.mult(n1, n2);
@@ -178,14 +176,14 @@ const bi = {
 		
 		var m = Math.floor(Math.min(n1.length, n2.length) / 2);
 		
-		var h1 = n1.slice(0, m);
-		var l1 = n1.slice(m);
+		var h1 = n1.slice(0, -m);
+		var l1 = n1.slice(-m);
 		
 		console.log(bi.add(h1.concat(Array(m).fill(0)), l1));
 		console.log(n1);
 		
-		var h2 = n2.slice(0, m);
-		var l2 = n2.slice(m);
+		var h2 = n2.slice(0, -m);
+		var l2 = n2.slice(-m);
 		
 		var z0 = bi.karatsuba(l1, l2);
 		var z1 = bi.karatsuba(bi.add(l1, h1), bi.add(l2, h2));
