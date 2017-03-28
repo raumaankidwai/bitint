@@ -211,7 +211,7 @@ const bi = {
 		return bi.to8192(bi.add(bi.add(bi.from8192(z2.concat(Array(2 * m).fill(0))), bi.from8192(bi.to8192(bi.sub(bi.sub(bi.from8192(z1), bi.from8192(z2)), bi.from8192(z0))).concat(Array(m).fill(0)))), bi.from8192(z0)));
 	},
 	
-	karatsuba8192: (a, b) => bi.from8192(bi.karatsuba8192base(bi.to8192(a), bi.to8192(b))),
+	karatsuba8192: (a, b) => bi.clean(bi.from8192(bi.karatsuba8192base(bi.to8192(a), bi.to8192(b)))),
 	
 	divbase: (n1, n2) => {
 		var n = [n1[0]];
