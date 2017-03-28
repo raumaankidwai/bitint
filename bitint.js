@@ -204,7 +204,7 @@ const bi = {
 		var z1 = bi.karatsuba8192base(bi.to8192(bi.add(bi.from8192(l1), bi.from8192(h1))), bi.to8192(bi.add(bi.from8192(l2), bi.from8192(h2))));
 		var z2 = bi.karatsuba8192base(h1, h2);
 		
-		return bi.to8192(bi.add(bi.add(bi.from8192(z2).concat(Array(2 * m).fill(0)), bi.sub(bi.sub(bi.from8192(z1), bi.from8192(z2)), bi.from8192(z0)).concat(Array(m).fill(0))), bi.from8192(z0)));
+		return bi.to8192(bi.add(bi.add(bi.from8192(z2.concat(Array(2 * m).fill(0))), bi.sub(bi.sub(bi.from8192(z1), bi.from8192(z2)), bi.from8192(z0)).concat(Array(m).fill(0))), bi.from8192(z0)));
 	},
 	
 	karatsuba8192: (a, b) => bi.from8192(bi.karatsuba8192base(bi.to8192(a), bi.to8192(b))),
