@@ -189,7 +189,7 @@ const bi = {
 		var n2 = bi.clean(b);
 		
 		if (Math.min(n1.length, n2.length) < 2) {
-			return bi.to8192(bi.mult(bi.toBitInt(n1[0]), bi.toBitInt(n2[0])));
+			return bi.to8192(bi.mult(bi.from8192(n1), bi.from8192(n2)));
 		}
 		
 		var m = Math.floor(Math.min(n1.length, n2.length) / 2);
