@@ -200,10 +200,6 @@ const bi = {
 		var h2 = n2.slice(0, -m);
 		var l2 = n2.slice(-m);
 		
-		console.log(bi.to8192(bi.add(bi.from8192(h1.concat(Array(m).fill(0))), bi.from8192(l1))));
-		console.log(n1);
-		console.log("-----");
-		
 		var z0 = bi.karatsuba8192base(l1, l2);
 		var z1 = bi.karatsuba8192base(bi.to8192(bi.add(bi.from8192(l1), bi.from8192(h1))), bi.to8192(bi.add(bi.from8192(l2), bi.from8192(h2))));
 		var z2 = bi.karatsuba8192base(h1, h2);
