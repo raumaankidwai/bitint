@@ -1,14 +1,6 @@
-const copy = n => {
-	var k = [];
-	
-	for (var i = 0; i < n.length; i ++) {
-		k[i] = n[i];
-	}
-	
-	return k;
-};
+const copy = (n) => n.slice();
 
-const reverse = n => copy(n).reverse();
+const reverse = (n) => copy(n).reverse();
 
 const bi = {
 	toBitInt: (n) => {
@@ -119,6 +111,9 @@ const bi = {
 		}
 	},
 	
+	from8192: (n) => n.map(bi.toBitInt).reduce((a, b) => a.concat(b)),
+	to8192: (n) => new Array(Math.ceil((t = reverse(n)).length / 13)).fill(0).map(() => bi.fromBitInt(t.splice(0, 13).reverse())).reverse(),
+	
 	gt: (n1, n2) => (b1 = bi.clean(n1)).length ? (b2 = bi.clean(n2)).length ? b1.length == b2.length ? bi.gt(b1.slice(1), b2.slice(1)) : b1.length > b2.length : true : false,
 	gte: (n1, n2) => bi.eq(n1, n2) || bi.gt(n1, n2),
 	
@@ -188,6 +183,31 @@ const bi = {
 		
 		return bi.add(bi.add(z2.concat(Array(2 * m).fill(0)), bi.sub(bi.sub(z1, z2), z0).concat(Array(m).fill(0))), z0);
 	},
+	
+	karatsuba8192base: (a, b) => {
+		var n1 = bi.clean(a);
+		var n2 = bi.clean(b);
+		
+		if (Math.min(n1.length, n2.length) < 2) {
+			return bi.mult(bi.toBitInt(n1[0]), bi.toBitInt(n2[0]));
+		}
+		
+		var m = Math.floor(Math.min(n1.length, n2.length) / 2);
+		
+		var h1 = n1.slice(0, -m);
+		var l1 = n1.slice(-m);
+		
+		var h2 = n2.slice(0, -m);
+		var l2 = n2.slice(-m);
+		
+		var z0 = bi.karatsuba8192(l1, l2);
+		var z1 = bi.karatsuba8192(bi.to8192(bi.add(bi.from8192(l1), bi.from8192(h1))), bi.to8192(bi.add(bi.from8192(l2), bi.from8192(h2))));
+		var z2 = bi.karatsuba8192(h1, h2);
+		
+		return bi.to8192(bi.add(bi.add(bi.from8192(z2).concat(Array(2 * m).fill(0)), bi.sub(bi.sub(bi.from8192(z1), bi.from8192(z2)), bi.from8192(z0)).concat(Array(m).fill(0))), bi.from8192(z0)));
+	},
+	
+	karatsuba8192: (a, b) => bi.from8192(bi.karatsuba8192base(a, b)),
 	
 	divbase: (n1, n2) => {
 		var n = [n1[0]];
