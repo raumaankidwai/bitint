@@ -111,7 +111,20 @@ const bi = {
 		}
 	},
 	
-	from8192: (n) => n.length ? n.map((e) => Array(13).fill(0).concat(bi.toBitInt(e)).slice(-13)).reduce((a, b) => a.concat(b)) : [],
+	from8192: (n) => {
+		if (n.length) {
+			var k = [], i = -1, l = n.length;
+			var p = Array(13).fill(0);
+			
+			for (; ++i < l;) {
+				k = k.concat(p.concat(bi.toBitInt(e)).slice(-13));
+			}
+			
+			return k;
+		}
+		
+		return [];
+	},
 	to8192: (n) => new Array(Math.ceil((tmp = reverse(n)).length / 13)).fill(0).map(() => bi.fromBitInt(tmp.splice(0, 13).reverse())).reverse(),
 	
 	gt: (n1, n2) => (b1 = bi.clean(n1)).length ? (b2 = bi.clean(n2)).length ? b1.length == b2.length ? bi.gt(b1.slice(1), b2.slice(1)) : b1.length > b2.length : true : false,
