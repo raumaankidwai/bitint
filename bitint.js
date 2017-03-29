@@ -117,7 +117,7 @@ const bi = {
 			var p = Array(13).fill(0);
 			
 			for (; ++i < l;) {
-				k = k.concat(p.concat(bi.toBitInt(e)).slice(-13));
+				k = k.concat(p.concat(bi.toBitInt(n[i])).slice(-13));
 			}
 			
 			return k;
