@@ -113,11 +113,18 @@ const bi = {
 	
 	from8192: (n) => {
 		if (n.length) {
-			var k = [], i = -1, l = n.length;
-			var p = Array(13).fill(0);
+			var k = [], i = -1, l = n.length, p = -1;
 			
 			for (; ++i < l;) {
-				k = k.concat(p.concat(bi.toBitInt(n[i])).slice(-13));
+				var m = bi.toBitInt(n[i]);
+				
+				while (m.length < 13) {
+					m.unshift(0);
+				}
+				
+				for (; ++p < 13;) {
+					k.push(m[p]);
+				}
 			}
 			
 			return k;
