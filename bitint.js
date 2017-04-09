@@ -113,10 +113,10 @@ const bi = {
 	
 	from8192: (n) => {
 		if (n.length) {
-			var k = [], i = -1, l = n.length, p = -1;
+			var k = [], i = -1, l = n.length;
 			
 			for (; ++i < l;) {
-				var m = bi.toBitInt(n[i]);
+				var p = -1, m = bi.toBitInt(n[i]);
 				
 				while (m.length < 13) {
 					m.unshift(0);
