@@ -3,3 +3,34 @@ karatsuba:		638.73588	ms
 karatsuba8192:		141.88551	ms
 from8192:		  1.68966	ms
 to8192:			  0.13905	ms
+
+LPM exponential of time(bits), regressed on 6-10 bits:
+y = 0.00045656383 * 7.80182463^x
+
+raw data:
+2 bits
+  2 ms
+
+3 bits
+  7 ms
+
+4 bits
+  10 ms
+
+5 bits
+  21 ms
+
+6 bits
+  115 ms
+
+7 bits
+  746 ms
+
+8 bits
+  5462 ms
+
+9 bits
+  51646 ms
+
+10 bits
+  399512 ms
