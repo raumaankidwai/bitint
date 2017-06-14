@@ -1,3 +1,4 @@
+10 bits:
 mult:			108.57385	ms
 karatsuba:		638.73588	ms
 karatsuba8192:		141.88551	ms
