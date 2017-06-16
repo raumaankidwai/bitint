@@ -35,3 +35,5 @@ raw data:
 
 10 bits
   399512 ms
+
+this was computed on a cloud processing something thing so it's much faster than normal results; on my machine I saw 8 bits as 28360 ms and 6 bits as 607 ms.
