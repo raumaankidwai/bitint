@@ -179,13 +179,30 @@ const bi = {
 		return bi.clean(reverse(b));
 	},
 	
-	mult: (n1, n2) => n2.length ? reverse(n2).map((n, i) => n ? n1.concat(Array(i).fill(0)) : []).reduce((a, b) => bi.add(a, b)) : [],
+	mult: (a, b) => {
+		var n1 = bi.clean(a);
+		var n2 = bi.clean(b);
+		
+		if (!n2.length) {
+			return [0];
+		}
+		
+		var p = [];
+		
+		for (var i = -1, l = n2.length; ++i < l;) {
+			if (n2[i]) {
+				p.push(n1.concat(Array(l - i - 1).fill(0)));
+			}
+		}
+		
+		return p.reduce(bi.add);
+	},
 	
 	karatsuba: (a, b) => {
 		var n1 = bi.clean(a);
 		var n2 = bi.clean(b);
 		
-		if (Math.min(n1.length, n2.length) < 2) {
+		if (Math.max(n1.length, n2.length) < 300) {
 			return bi.mult(n1, n2);
 		}
 		
@@ -208,7 +225,7 @@ const bi = {
 		var n1 = bi.clean(a);
 		var n2 = bi.clean(b);
 		
-		if (Math.min(n1.length, n2.length) < 2) {
+		if (Math.max(n1.length, n2.length) < 23) {
 			return bi.to8192(bi.mult(bi.from8192(n1), bi.from8192(n2)));
 		}
 		
@@ -263,12 +280,12 @@ const bi = {
 		
 		while (bi.gt(b, [0])) {
 			if (b[b.length - 1]) {
-				k = bi.mod(bi.mult(k, a), c);
+				k = bi.mod(bi.karatsuba(k, a), c);
 			}
 			
 			b = bi.rshift(b);
 			
-			a = bi.mod(bi.sq(a), c);
+			a = bi.mod(bi.karatsuba(a, a), c);
 		}
 		
 		return k;
